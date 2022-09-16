@@ -2,8 +2,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
+const { Player } = require('discord-player');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates] });
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
@@ -15,8 +17,16 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
-client.once('ready', () => {
-	console.log('Ready!');
+client.Player = new Player(client, {
+	ytdlOptions: {
+		quality: 'highestaudio',
+		highWaterMark: 1 << 25,
+	},
+});
+
+client.on('ready', () => {
+    
+	console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on('interactionCreate', async interaction => {
