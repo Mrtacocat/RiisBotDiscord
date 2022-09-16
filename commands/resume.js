@@ -1,9 +1,8 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const { execute } = require("./help")
 
 module.exports = {
 	data: new SlashCommandBuilder().setName("resume").setDescription("Resumes the music"),
-	async execute({ client, interaction }) {
+	run: async ({ client, interaction }) => {
 		const queue = client.player.getQueue(interaction.guildId)
 
 		if (!queue) return await interaction.editReply("There are no songs in the queue")

@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 const { QueryType } = require("discord-player")
-const { execute } = require("./info")
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -27,13 +26,13 @@ module.exports = {
 					option.setName("searchterms").setDescription("the search keywords").setRequired(true)
 				)
 		),
-	async execute({ client, interaction }) {
-		if (!interaction?.member?.voice?.channel) return interaction.editReply({ content: 'You must be in a voice channel to use this command', fetchReply: true })
+	run: async ({ client, interaction }) => {
+		if (!interaction.member.voice.channel) return interaction.editReply("You need to be in a VC to use this command")
 
 		const queue = await client.player.createQueue(interaction.guild)
 		if (!queue.connection) await queue.connect(interaction.member.voice.channel)
 
-		let embed = new MessageEmbed()
+		let embed = new EmbedBuilder()
 
 		if (interaction.options.getSubcommand() === "song") {
             let url = interaction.options.getString("url")

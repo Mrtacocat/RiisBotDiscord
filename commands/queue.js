@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const { MessageEmbed } = require("discord.js")
-const { execute } = require("./help")
+const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -8,7 +7,7 @@ module.exports = {
     .setDescription("displays the current song queue")
     .addNumberOption((option) => option.setName("page").setDescription("Page number of the queue").setMinValue(1)),
 
-    async execute({ client, interaction }){
+    run: async ({ client, interaction }) => {
         const queue = client.player.getQueue(interaction.guildId)
         if (!queue || !queue.playing){
             return await interaction.editReply("There are no songs in the queue")
@@ -28,7 +27,7 @@ module.exports = {
 
         await interaction.editReply({
             embeds: [
-                new MessageEmbed()
+                new EmbedBuilder()
                     .setDescription(`**Currently Playing**\n` + 
                     (currentSong ? `\`[${currentSong.duration}]\` ${currentSong.title} -- <@${currentSong.requestedBy.id}>` : "None") +
                     `\n\n**Queue**\n${queueString}`

@@ -10,10 +10,10 @@ function profileEmbed(interaction)  {
         "thumbnail": {url: `${interaction.user.displayAvatarURL({ dynamic: true })}`},
         "fields": [ { name: 'Username', value: `${interaction.user.username}`, inline: true },
                     { name: 'Created at', value: `${interaction.user.createdAt}`, inline: true },
-                    { name: 'Joined at', value: `${interaction.user.joinedAt}`, inline: true },
+                    { name: 'Joined at', value: `${interaction.member.joinedAt}`, inline: true },
                     //{ name: 'Status', value: `${interaction.user.presence.status}`, inline: true },
                     //{ name: 'Activity', value: `${interaction.user.presence.activities[0]}`, inline: true },
-                    { name: 'Roles', value: `${interaction.user.roles.cache.map(role => role.toString()).join(' ')}`}],
+                    { name: 'Roles', value: `${interaction.member.roles.cache.map(role => role.toString()).join(' ')}`}],
         "timestamp": new Date(),
         "footer": { text: 'Developed by MrTacoCat#6868', iconURL: 'https://cdn.discordapp.com/avatars/182532419335749632/fca1851401444b5a29aacab533bb64fc.webp' }
     
