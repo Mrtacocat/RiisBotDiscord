@@ -23,6 +23,8 @@ client.player = new Player(client, {
     }
 })
 
+
+
 let commands = []
 
 const slashFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"))

@@ -17,14 +17,12 @@ module.exports = {
 				.setName("playlist")
 				.setDescription("Loads a playlist of songs from a url")
 				.addStringOption((option) => option.setName("url").setDescription("the playlist's url").setRequired(true))
-		)
+		)     
 		.addSubcommand((subcommand) =>
 			subcommand
 				.setName("search")
 				.setDescription("Searches for sogn based on provided keywords")
-				.addStringOption((option) =>
-					option.setName("searchterms").setDescription("the search keywords").setRequired(true)
-				)
+				.addStringOption((option) => option.setName("searchterms").setDescription("the search keywords").setRequired(true))
 		),
 	run: async ({ client, interaction }) => {
 		if (!interaction.member.voice.channel) return interaction.editReply("You need to be in a VC to use this command")
@@ -82,7 +80,8 @@ module.exports = {
                 .setDescription(`**[${song.title}](${song.url})** has been added to the Queue`)
                 .setThumbnail(song.thumbnail)
                 .setFooter({ text: `Duration: ${song.duration}`})
-		}
+		} 
+
         if (!queue.playing) await queue.play()
         await interaction.editReply({
             embeds: [embed]
