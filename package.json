@@ -1,21 +1,27 @@
 {
-  "name": "riisbot",
+  "name": "riisbotdiscord",
   "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mrtacocat/RiisBotDiscord.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mrtacocat/RiisBotDiscord/issues"
+  },
+  "homepage": "https://github.com/Mrtacocat/RiisBotDiscord#readme",
+  "keywords": [],
+  "description": "",
   "dependencies": {
-    "@discordjs/builders": "^1.2.0",
-    "@discordjs/opus": "^0.8.0",
-    "@discordjs/rest": "^1.1.0",
-    "@discordjs/voice": "^0.11.0",
-    "discord-player": "^5.3.1",
-    "discord.js": "^14.3.0",
-    "dotenv": "^16.0.2",
-    "ffmpeg": "^0.0.4"
+    "discord.js": "^14.8.0",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.36.0"
   }
 }
