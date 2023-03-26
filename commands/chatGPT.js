@@ -25,7 +25,7 @@ module.exports = {
 		try {
 			const response = await openai.createCompletion({
 				model: 'text-davinci-003',
-				max_tokens: 2048,
+				max_tokens: 4000,
 				temperature: 0.5,
 				prompt: question,
 			// eslint-disable-next-line semi
